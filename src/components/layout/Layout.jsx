@@ -92,7 +92,7 @@ const Layout = ({ children }) => {
                             onClick={() => setIsOpen(false)}
                         ></div>
 
-                        <aside className="relative w-64 bg-white dark:bg-gray-900 shadow-lg p-4 flex-shrink-0 flex flex-col animate-slide-in">
+                        <aside className={`relative w-64  ${isDark ? " bg-black" : "bg-slate-900"} shadow-lg p-4 flex-shrink-0 flex flex-col animate-slide-in`}>
                             {/* Close Button */}
                             <button
                                 className="absolute top-4 right-4 p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700"
@@ -151,7 +151,7 @@ const Layout = ({ children }) => {
           }
         `}
             </style>
-        </div>
+        </div >
     );
 };
 
