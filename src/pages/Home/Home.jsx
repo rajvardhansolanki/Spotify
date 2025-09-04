@@ -1,8 +1,9 @@
+import RowCard from "../../components/RowCard/RowCard";
+
 const Home = () => {
     return (
-        <div className="w-full bg-white p-6 rounded-xl shadow-md">
-            <h1 className="text-2xl font-bold text-gray-800 mb-2">Spotify coming soon...</h1>
-            <p className="text-gray-600">This is your Spotify page 🚀</p>
+        <div className="w-full bg-[#000000] sm:p-6 p-3 mt-0 sm:rounded-xl rounded-none shadow-md">
+            <RowCard />
         </div>
     );
 };
