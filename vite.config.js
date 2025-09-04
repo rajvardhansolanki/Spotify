@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/', // Ensure root path for Netlify deployment
+  base: '/home', // Ensure root path for Netlify deployment
   plugins: [
     react(),
     tailwindcss(),
