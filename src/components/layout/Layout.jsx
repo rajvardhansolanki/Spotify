@@ -1,99 +1,124 @@
 import { useState } from "react";
-import { Outlet, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { ROUTES } from "../../constants/routes";
+import { useTheme } from "../../context/ThemeContext";
 
-const Layout = () => {
+const Layout = ({ children }) => {
+    const { isDark, toggleTheme } = useTheme();
     const [isOpen, setIsOpen] = useState(false);
 
+    const activeLinkClass = isDark
+        ? "bg-blue-700 text-white"
+        : "bg-blue-500 text-white";
+
+    const inactiveLinkClass = isDark
+        ? "text-gray-300 hover:bg-gray-700"
+        : "text-gray-700 hover:bg-gray-200";
+
     return (
-        <div className="flex h-screen bg-gray-100">
-            {/* Sidebar */}
-            <aside
-                className={`fixed top-0 left-0 h-full w-64 bg-white shadow-lg p-4 z-40 transform transition-transform duration-300
-          ${isOpen ? "translate-x-0" : "-translate-x-full"} 
-          md:translate-x-0 md:static md:block`}
-            >
-                <h2 className="text-xl font-bold mb-6">MyApp</h2>
-                <nav className="flex flex-col gap-4">
-                    <NavLink
-                        to={ROUTES.HOME_PAGE}
-                        className={({ isActive }) =>
-                            `p-2 rounded-md ${isActive
-                                ? "bg-blue-500 text-white"
-                                : "text-gray-700 hover:bg-gray-200"
-                            }`
-                        }
-                        onClick={() => setIsOpen(false)} // close on mobile after navigation
-                    >
-                        Home
-                    </NavLink>
-                    <NavLink
-                        to={ROUTES.ABOUT_PAGE}
-                        className={({ isActive }) =>
-                            `p-2 rounded-md ${isActive
-                                ? "bg-blue-500 text-white"
-                                : "text-gray-700 hover:bg-gray-200"
-                            }`
-                        }
-                        onClick={() => setIsOpen(false)}
-                    >
-                        About
-                    </NavLink>
-                    <NavLink
-                        to={ROUTES.CONTACT_PAGE}
-                        className={({ isActive }) =>
-                            `p-2 rounded-md ${isActive
-                                ? "bg-blue-500 text-white"
-                                : "text-gray-700 hover:bg-gray-200"
-                            }`
-                        }
-                        onClick={() => setIsOpen(false)}
-                    >
-                        Contact
-                    </NavLink>
-                </nav>
-            </aside>
-
-            {/* Overlay (for mobile) */}
-            {isOpen && (
-                <div
-                    className="fixed inset-0 bg-black bg-opacity-40 z-30 md:hidden"
-                    onClick={() => setIsOpen(false)}
-                ></div>
-            )}
-
-            {/* Main Content */}
-            <div className="flex-1 flex flex-col">
-                {/* Header */}
-                <header className="flex items-center justify-between bg-white shadow-md p-4 md:hidden">
+        <div className="w-full h-screen flex flex-col">
+            {/* Navbar */}
+            <header className="flex w-full items-center justify-between px-4 sm:px-6 h-16 bg-white dark:bg-gray-900 shadow-md flex-shrink-0">
+                <div className="flex items-center gap-2">
+                    {/* Hamburger icon only on small screens */}
                     <button
-                        onClick={() => setIsOpen(!isOpen)}
-                        className="p-2 rounded-md text-gray-700 hover:bg-gray-200 focus:outline-none"
+                        className="sm:hidden p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700"
+                        onClick={() => setIsOpen(true)}
                     >
-                        {/* Simple Hamburger Icon */}
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-6 w-6"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            strokeWidth={2}
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M4 6h16M4 12h16M4 18h16"
-                            />
-                        </svg>
+                        *
                     </button>
-                    <h1 className="text-lg font-bold">MyApp</h1>
-                </header>
+                    <span className="font-bold text-xl text-gray-900 dark:text-gray-100">
+                        MyApp
+                    </span>
+                </div>
 
-                {/* Page Content */}
-                <main className="flex-1 p-6 overflow-y-auto">
-                    <Outlet />
+                <button
+                    onClick={toggleTheme}
+                    className="p-2 rounded-md bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
+                >
+                    {isDark ? "🌙" : "☀️"}
+                </button>
+            </header>
+
+            {/* Sidebar + Main */}
+            <div className="flex flex-1 overflow-hidden">
+                {/* Desktop Sidebar */}
+                <aside className="hidden sm:flex w-64 bg-white dark:bg-gray-900 shadow-lg p-4 flex-shrink-0 flex-col">
+                    <nav className="flex flex-col gap-4">
+                        {[
+                            { path: ROUTES.HOME_PAGE, label: "Home" },
+                            { path: ROUTES.ABOUT_PAGE, label: "About" },
+                            { path: ROUTES.CONTACT_PAGE, label: "Contact" },
+                        ].map((link) => (
+                            <NavLink
+                                key={link.path}
+                                to={link.path}
+                                className={({ isActive }) =>
+                                    `p-2 rounded-md transition-colors duration-200 ${isActive ? activeLinkClass : inactiveLinkClass
+                                    }`
+                                }
+                            >
+                                {link.label}
+                            </NavLink>
+                        ))}
+                    </nav>
+                </aside>
+
+                {/* Mobile Drawer */}
+                {isOpen && (
+                    <div className="fixed inset-0 z-50 flex">
+                        <div
+                            className="fixed inset-0 bg-black/50"
+                            onClick={() => setIsOpen(false)}
+                        ></div>
+                        <aside className="relative w-64 bg-white dark:bg-gray-900 shadow-lg p-4 flex-shrink-0 flex flex-col animate-slide-in">
+                            <button
+                                className="absolute top-4 right-4 p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700"
+                                onClick={() => setIsOpen(false)}
+                            >
+                                &
+                            </button>
+                            <nav className="flex flex-col gap-4 mt-8">
+                                {[
+                                    { path: ROUTES.HOME_PAGE, label: "Home" },
+                                    { path: ROUTES.ABOUT_PAGE, label: "About" },
+                                    { path: ROUTES.CONTACT_PAGE, label: "Contact" },
+                                ].map((link) => (
+                                    <NavLink
+                                        key={link.path}
+                                        to={link.path}
+                                        className={({ isActive }) =>
+                                            `p-2 rounded-md transition-colors duration-200 ${isActive ? activeLinkClass : inactiveLinkClass
+                                            }`
+                                        }
+                                        onClick={() => setIsOpen(false)}
+                                    >
+                                        {link.label}
+                                    </NavLink>
+                                ))}
+                            </nav>
+                        </aside>
+                    </div>
+                )}
+
+                {/* Main Content */}
+                <main className="flex-1 bg-gray-100 dark:bg-gray-800 p-4 sm:p-6 overflow-auto">
+                    {children}
                 </main>
             </div>
+
+            {/* Tailwind animation */}
+            <style>
+                {`
+          @keyframes slide-in {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(0); }
+          }
+          .animate-slide-in {
+            animation: slide-in 0.3s ease-out forwards;
+          }
+        `}
+            </style>
         </div>
     );
 };
