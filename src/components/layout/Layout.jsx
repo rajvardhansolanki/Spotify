@@ -21,7 +21,7 @@ const Layout = ({ children }) => {
         <div className="w-full h-screen flex flex-col">
             {/* Navbar */}
             <header
-                className={`border-b-2 border-green-900 flex w-full items-center justify-between px-4 sm:px-6 h-16 ${isDark ? "bg-black" : "bg-slate-900"
+                className={`border-b-2 border-green-900 flex w-full items-center justify-between px-4 sm:px-6 h-16 ${isDark ? "bg-slate-900" : "bg-black"
                     } shadow-md flex-shrink-0`}
             >
                 <div className="flex items-center gap-2">
@@ -65,7 +65,7 @@ const Layout = ({ children }) => {
             <div className="flex flex-1 overflow-hidden">
                 {/* Desktop Sidebar */}
                 <aside
-                    className={`hidden sm:flex w-64 ${isDark ? "bg-black" : "bg-slate-900"
+                    className={`hidden sm:flex w-64 ${isDark ? "bg-slate-900" : "bg-black"
                         } shadow-lg p-4 flex-shrink-0 flex flex-col`}
                 >
                     <nav className="flex flex-col gap-4">
@@ -92,7 +92,7 @@ const Layout = ({ children }) => {
                             onClick={() => setIsOpen(false)}
                         ></div>
 
-                        <aside className={`relative w-64  ${isDark ? " bg-black" : "bg-slate-900"} shadow-lg p-4 flex-shrink-0 flex flex-col animate-slide-in`}>
+                        <aside className={`relative w-64  ${isDark ? "bg-slate-900" : "bg-black"} shadow-lg p-4 flex-shrink-0 flex flex-col animate-slide-in`}>
                             {/* Close Button */}
                             <button
                                 className="absolute top-4 right-4 p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700"
