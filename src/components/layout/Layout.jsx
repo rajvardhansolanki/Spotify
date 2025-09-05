@@ -26,16 +26,16 @@ const Layout = ({ children }) => {
     ];
 
     return (
-        <div className="w-full h-screen flex flex-col">
+        <div className="w-full h-screen flex flex-col transition-colors duration-500 ease-in-out">
             {/* Navbar */}
             <header
-                className="flex w-full items-center justify-between px-4 sm:px-6 h-16 shadow-md flex-shrink-0"
+                className="flex w-full items-center justify-between px-4 sm:px-6 h-16 shadow-md flex-shrink-0 transition-colors duration-500 ease-in-out"
                 style={{ backgroundColor, color: fontColor }}
             >
                 <div className="flex items-center gap-2">
                     {/* Hamburger icon for mobile */}
                     <button
-                        className="sm:hidden p-2 rounded-md hover:bg-gray-200"
+                        className="sm:hidden p-2 rounded-md hover:bg-gray-200 transition-colors duration-300"
                         onClick={() => setIsOpen(true)}
                     >
                         <svg
@@ -62,7 +62,7 @@ const Layout = ({ children }) => {
 
                 <button
                     onClick={() => dispatch(toggleTheme())}
-                    className="p-2 rounded-md bg-gray-200 text-gray-800 cursor-pointer"
+                    className="p-2 rounded-md bg-gray-200 text-gray-800 cursor-pointer transition-colors duration-500 ease-in-out"
                 >
                     {darkMode ? "🌙" : "☀️"}
                 </button>
@@ -72,7 +72,7 @@ const Layout = ({ children }) => {
             <div className="flex flex-1 overflow-hidden border-t border-white">
                 {/* Desktop Sidebar */}
                 <aside
-                    className="hidden sm:flex w-64 shadow-lg p-4 flex-shrink-0 flex-col"
+                    className="hidden sm:flex w-64 shadow-lg p-4 flex-shrink-0 flex-col transition-colors duration-500 ease-in-out"
                     style={{ backgroundColor, color: fontColor }}
                 >
                     <nav className="flex flex-col gap-4">
@@ -81,7 +81,9 @@ const Layout = ({ children }) => {
                                 key={link.path}
                                 to={link.path}
                                 className={({ isActive }) =>
-                                    `p-2 rounded-md transition-colors duration-200 ${isActive ? activeLinkClass : inactiveLinkClass
+                                    `p-2 rounded-md transition-colors duration-200 ${isActive
+                                        ? activeLinkClass
+                                        : inactiveLinkClass
                                     }`
                                 }
                             >
@@ -100,12 +102,12 @@ const Layout = ({ children }) => {
                         ></div>
 
                         <aside
-                            className="relative w-64 shadow-lg p-4 flex-shrink-0 flex flex-col animate-slide-in"
+                            className="relative w-64 shadow-lg p-4 flex-shrink-0 flex flex-col animate-slide-in transition-colors duration-500 ease-in-out"
                             style={{ backgroundColor, color: fontColor }}
                         >
                             {/* Close Button */}
                             <button
-                                className="absolute top-4 right-4 p-2 rounded-md hover:bg-gray-200"
+                                className="absolute top-4 right-4 p-2 rounded-md hover:bg-gray-200 transition-colors duration-300"
                                 onClick={() => setIsOpen(false)}
                             >
                                 <svg
@@ -130,7 +132,9 @@ const Layout = ({ children }) => {
                                         key={link.path}
                                         to={link.path}
                                         className={({ isActive }) =>
-                                            `p-2 rounded-md transition-colors duration-200 ${isActive ? activeLinkClass : inactiveLinkClass
+                                            `p-2 rounded-md transition-colors duration-200 ${isActive
+                                                ? activeLinkClass
+                                                : inactiveLinkClass
                                             }`
                                         }
                                         onClick={() => setIsOpen(false)}
@@ -144,7 +148,7 @@ const Layout = ({ children }) => {
                 )}
 
                 {/* Main Content */}
-                <main className="flex-1 p-0 sm:p-2 overflow-auto">
+                <main className="flex-1 p-0 sm:p-2 overflow-auto transition-colors duration-500 ease-in-out">
                     {children}
                 </main>
             </div>
