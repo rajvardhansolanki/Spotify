@@ -1,17 +1,20 @@
 import { BrowserRouter } from "react-router-dom";
 import Layout from "./components/layout/Layout";
 import AppRoutes from "./routes/AppRoutes";
-import { ThemeProvider } from "./context/ThemeContext";
+import { Provider } from 'react-redux';
+import { store } from './app/store';
+
+
 
 function App() {
   return (
-    <ThemeProvider>
+    <Provider store={store}>
       <BrowserRouter>
         <Layout>
           <AppRoutes />
         </Layout>
       </BrowserRouter>
-    </ThemeProvider>
+    </Provider>
   );
 }
 

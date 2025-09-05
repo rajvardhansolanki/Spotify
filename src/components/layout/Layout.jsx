@@ -1,20 +1,26 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { toggleTheme } from "../../features/theme/themeSlice";
 import { ROUTES } from "../../constants/routes";
-import { useTheme } from "../../context/ThemeContext";
 import Logo from "../../assets/Logos/brand-logo.png";
 
 const Layout = ({ children }) => {
-    const { isDark, toggleTheme } = useTheme();
+    const dispatch = useDispatch();
     const [isOpen, setIsOpen] = useState(false);
+    const { backgroundColor, fontColor } = useSelector(
+        (state) => state.theme.colors
+    );
+    const darkMode = useSelector((state) => state.theme.darkMode);
 
     const activeLinkClass = "bg-green-900 text-white";
-    const inactiveLinkClass = "text-gray-400 hover:bg-green-900 hover:text-white";
+    const inactiveLinkClass =
+        "text-gray-400 hover:bg-green-900 hover:text-white";
 
     const links = [
         { path: ROUTES.HOME_PAGE, label: "Home" },
-        { path: ROUTES.ABOUT_PAGE, label: "library" },
-        { path: ROUTES.CONTACT_PAGE, label: "favorite" },
+        { path: ROUTES.ABOUT_PAGE, label: "Library" },
+        { path: ROUTES.CONTACT_PAGE, label: "Favorite" },
         { path: ROUTES.PLAYLIST_PAGE, label: "Playlists" },
         { path: ROUTES.SETTING_PAGE, label: "Settings" },
     ];
@@ -23,17 +29,17 @@ const Layout = ({ children }) => {
         <div className="w-full h-screen flex flex-col">
             {/* Navbar */}
             <header
-                className={`flex w-full items-center justify-between px-4 sm:px-6 h-16 ${isDark ? "bg-slate-900" : "bg-black"
-                    } shadow-md flex-shrink-0`}
+                className="flex w-full items-center justify-between px-4 sm:px-6 h-16 shadow-md flex-shrink-0"
+                style={{ backgroundColor, color: fontColor }}
             >
                 <div className="flex items-center gap-2">
                     {/* Hamburger icon for mobile */}
                     <button
-                        className="sm:hidden p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700"
+                        className="sm:hidden p-2 rounded-md hover:bg-gray-200"
                         onClick={() => setIsOpen(true)}
                     >
                         <svg
-                            className="w-6 h-6 stroke-white"
+                            className="w-6 h-6"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
@@ -54,21 +60,20 @@ const Layout = ({ children }) => {
                     </span>
                 </div>
 
-                {/* Dark Mode Toggle */}
                 <button
-                    onClick={toggleTheme}
-                    className="p-2 rounded-md bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
+                    onClick={() => dispatch(toggleTheme())}
+                    className="p-2 rounded-md bg-gray-200 text-gray-800 cursor-pointer"
                 >
-                    {isDark ? "🌙" : "☀️"}
+                    {darkMode ? "🌙" : "☀️"}
                 </button>
             </header>
 
             {/* Sidebar + Main */}
-            <div className="flex flex-1 overflow-hidden border-t-1 border-white">
+            <div className="flex flex-1 overflow-hidden border-t border-white">
                 {/* Desktop Sidebar */}
                 <aside
-                    className={`hidden sm:flex w-64 ${isDark ? "bg-slate-900" : "bg-black"
-                        } shadow-lg p-4 flex-shrink-0 flex flex-col`}
+                    className="hidden sm:flex w-64 shadow-lg p-4 flex-shrink-0 flex-col"
+                    style={{ backgroundColor, color: fontColor }}
                 >
                     <nav className="flex flex-col gap-4">
                         {links.map((link) => (
@@ -94,14 +99,17 @@ const Layout = ({ children }) => {
                             onClick={() => setIsOpen(false)}
                         ></div>
 
-                        <aside className={`relative w-64  ${isDark ? "bg-slate-900" : "bg-black"} shadow-lg p-4 flex-shrink-0 flex flex-col animate-slide-in`}>
+                        <aside
+                            className="relative w-64 shadow-lg p-4 flex-shrink-0 flex flex-col animate-slide-in"
+                            style={{ backgroundColor, color: fontColor }}
+                        >
                             {/* Close Button */}
                             <button
-                                className="absolute top-4 right-4 p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700"
+                                className="absolute top-4 right-4 p-2 rounded-md hover:bg-gray-200"
                                 onClick={() => setIsOpen(false)}
                             >
                                 <svg
-                                    className="w-6 h-6 stroke-white"
+                                    className="w-6 h-6"
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
                                     viewBox="0 0 24 24"
@@ -136,7 +144,7 @@ const Layout = ({ children }) => {
                 )}
 
                 {/* Main Content */}
-                <main className="flex-1 bg-[#1b1817] p-0 rounded-none sm:p-2 overflow-auto">
+                <main className="flex-1 p-0 sm:p-2 overflow-auto">
                     {children}
                 </main>
             </div>
@@ -153,7 +161,7 @@ const Layout = ({ children }) => {
           }
         `}
             </style>
-        </div >
+        </div>
     );
 };
 
