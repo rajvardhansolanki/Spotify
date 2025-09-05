@@ -132,7 +132,7 @@ const CustomSlider = () => {
         dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: 4, // default (desktop)
+        slidesToShow: 5, // default (desktop)
         slidesToScroll: 1,
         arrows: false,
         responsive: [
