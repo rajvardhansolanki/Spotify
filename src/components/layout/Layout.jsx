@@ -13,15 +13,17 @@ const Layout = ({ children }) => {
 
     const links = [
         { path: ROUTES.HOME_PAGE, label: "Home" },
-        { path: ROUTES.ABOUT_PAGE, label: "About" },
-        { path: ROUTES.CONTACT_PAGE, label: "Contact" },
+        { path: ROUTES.ABOUT_PAGE, label: "library" },
+        { path: ROUTES.CONTACT_PAGE, label: "favorite" },
+        { path: ROUTES.PLAYLIST_PAGE, label: "Playlists" },
+        { path: ROUTES.SETTING_PAGE, label: "Settings" },
     ];
 
     return (
         <div className="w-full h-screen flex flex-col">
             {/* Navbar */}
             <header
-                className={`border-b-2 border-green-900 flex w-full items-center justify-between px-4 sm:px-6 h-16 ${isDark ? "bg-slate-900" : "bg-black"
+                className={`flex w-full items-center justify-between px-4 sm:px-6 h-16 ${isDark ? "bg-slate-900" : "bg-black"
                     } shadow-md flex-shrink-0`}
             >
                 <div className="flex items-center gap-2">
@@ -62,7 +64,7 @@ const Layout = ({ children }) => {
             </header>
 
             {/* Sidebar + Main */}
-            <div className="flex flex-1 overflow-hidden">
+            <div className="flex flex-1 overflow-hidden border-t-1 border-white">
                 {/* Desktop Sidebar */}
                 <aside
                     className={`hidden sm:flex w-64 ${isDark ? "bg-slate-900" : "bg-black"
@@ -134,7 +136,7 @@ const Layout = ({ children }) => {
                 )}
 
                 {/* Main Content */}
-                <main className="flex-1 bg-gray-100 dark:bg-gray-800 p-0 rounded-none sm:p-2 overflow-auto">
+                <main className="flex-1 bg-[#1b1817] p-0 rounded-none sm:p-2 overflow-auto">
                     {children}
                 </main>
             </div>
