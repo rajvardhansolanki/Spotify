@@ -3,9 +3,8 @@ const RenderContent = ({
   children
 }) => {
   return (
-    <main className="flex-1 overflow-auto transition-colors duration-500 ease-in-out">
+    <main className="h-full flex-1 overflow-auto transition-colors duration-500 ease-in-out">
       {children}
-      {/* <Player /> */}
     </main>
   );
 }

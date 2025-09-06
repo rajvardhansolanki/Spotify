@@ -4,6 +4,7 @@ import Logo from "../../assets/Logos/brand-logo.png";
 import { ROUTES } from "../../constants/routes";
 import RenderContent from "../../pages/Main/RenderContent";
 import Navbvar from "../navbar/Navbvar";
+import Player from "../player/Player";
 import Sidebar from "../sideBar/Sidebar";
 
 const Layout = ({ children }) => {
@@ -51,7 +52,9 @@ const Layout = ({ children }) => {
           />
           <div className="w-full relative">
             <RenderContent>{children}</RenderContent>
-            <div className="w-full h-16 absolute border-l border-green-900 bottom-0" style={{ backgroundColor: backgroundColor }}></div>
+            <div className="w-full h-20 flex items-center absolute border-l border-green-900 bottom-0" style={{ backgroundColor: backgroundColor }}>
+              <Player />
+            </div>
           </div>
         </div>
       </div>
