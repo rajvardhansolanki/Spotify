@@ -16,7 +16,7 @@ const RowCard = () => {
 
           {/* Text section - takes remaining space */}
           <div className="flex-1 bg-[#576666] flex items-center pl-2.5">
-            <p className="text-white truncate">Stay With Me</p>
+            <p className="text-white truncate text-wrap">Shap of you</p>
           </div>
         </div>
         <div className="h-16 bg-[#536A6A] rounded-[0.4rem] overflow-hidden flex">
@@ -31,7 +31,7 @@ const RowCard = () => {
 
           {/* Text section - takes remaining space */}
           <div className="flex-1 bg-[#576666] flex items-center pl-2.5">
-            <p className="text-white truncate">Stay With Me</p>
+            <p className="text-white truncate text-wrap">Shap of you</p>
           </div>
         </div>
         <div className="h-16 bg-[#536A6A] rounded-[0.4rem] overflow-hidden flex">
@@ -46,7 +46,7 @@ const RowCard = () => {
 
           {/* Text section - takes remaining space */}
           <div className="flex-1 bg-[#576666] flex items-center pl-2.5">
-            <p className="text-white truncate">Stay With Me</p>
+            <p className="text-white truncate text-wrap">Shap of you</p>
           </div>
         </div>
         <div className="h-16 bg-[#536A6A] rounded-[0.4rem] overflow-hidden flex">
@@ -61,7 +61,7 @@ const RowCard = () => {
 
           {/* Text section - takes remaining space */}
           <div className="flex-1 bg-[#576666] flex items-center pl-2.5">
-            <p className="text-white truncate">Stay With Me</p>
+            <p className="text-white truncate text-wrap">Shap of you</p>
           </div>
         </div>
         <div className="h-16 bg-[#536A6A] rounded-[0.4rem] overflow-hidden flex">
@@ -76,7 +76,7 @@ const RowCard = () => {
 
           {/* Text section - takes remaining space */}
           <div className="flex-1 bg-[#576666] flex items-center pl-2.5">
-            <p className="text-white truncate">Stay With Me</p>
+            <p className="text-white truncate text-wrap">Shap of you</p>
           </div>
         </div>
         <div className="h-16 bg-[#536A6A] rounded-[0.4rem] overflow-hidden flex">
@@ -91,7 +91,7 @@ const RowCard = () => {
 
           {/* Text section - takes remaining space */}
           <div className="flex-1 bg-[#576666] flex items-center pl-2.5">
-            <p className="text-white truncate">Stay With Me</p>
+            <p className="text-white truncate text-wrap">Shap of you</p>
           </div>
         </div>
 
