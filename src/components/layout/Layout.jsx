@@ -27,10 +27,23 @@ const Layout = ({ children }) => {
 
   return (
     <div className="w-full h-screen flex flex-col transition-colors duration-500 ease-in-out">
-      <Navbvar setIsOpen={setIsOpen} logo={Logo} backgroundColor={backgroundColor} color={fontColor} dispatch={dispatch} darkMode={darkMode} />
-      <div className="flex flex-1 overflow-hidden border-t border-white">
-        <Sidebar backgroundColor={backgroundColor} color={fontColor} links={links} inactiveLinkClass={inactiveLinkClass} activeLinkClass={activeLinkClass} isOpen={isOpen} setIsOpen={setIsOpen} children={children} />
-      </div>
+      <Navbvar
+        setIsOpen={setIsOpen}
+        logo={Logo}
+        backgroundColor={backgroundColor}
+        color={fontColor}
+        dispatch={dispatch}
+        darkMode={darkMode}
+      />
+      <Sidebar
+        backgroundColor={backgroundColor}
+        color={fontColor}
+        links={links}
+        inactiveLinkClass={inactiveLinkClass}
+        activeLinkClass={activeLinkClass}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        children={children} />
     </div>
   );
 };
