@@ -17,7 +17,7 @@ const Navbvar = ({
         <div className="flex items-center gap-2">
           {/* Hamburger icon for mobile */}
           <button
-            className="sm:hidden p-2 rounded-md hover:bg-gray-200 transition-colors duration-300"
+            className="cursor-pointer sm:hidden p-1 rounded-md hover:bg-gray-200 bg-white sm:bg-blue-500 transition-colors duration-300"
             onClick={() => setIsOpen(true)}
           >
             <svg

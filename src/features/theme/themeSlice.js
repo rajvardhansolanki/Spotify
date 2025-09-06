@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     mode: 'dark',
-    darkMode: true, // ✅ boolean flag
+    darkMode: true,
     colors: {
         backgroundColor: '#000000',
         fontColor: '#fff',
@@ -16,19 +16,19 @@ const themeSlice = createSlice({
         toggleTheme: (state) => {
             if (state.mode === 'light') {
                 state.mode = 'dark';
-                state.darkMode = true; // ✅ dark mode active
+                state.darkMode = true;
                 state.colors.backgroundColor = '#000000';
                 state.colors.fontColor = '#fff';
             } else {
                 state.mode = 'light';
-                state.darkMode = false; // ✅ light mode active
-                state.colors.backgroundColor = '#0f172b';
+                state.darkMode = false;
+                state.colors.backgroundColor = '#004030';
                 state.colors.fontColor = '#fff';
             }
         },
         setTheme: (state, action) => {
             state.mode = action.payload.mode;
-            state.darkMode = action.payload.mode === 'dark'; // ✅ auto-update flag
+            state.darkMode = action.payload.mode === 'dark';
             state.colors = action.payload.colors;
         }
     }
