@@ -36,7 +36,6 @@ const Navbvar = ({
             </svg>
           </button>
 
-          {/* Logo */}
           <span className="font-bold text-xl">
             <img className="w-24" src={logo} alt="brand-logo" />
           </span>
