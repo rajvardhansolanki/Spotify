@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    mode: 'light',
-    darkMode: false, // ✅ boolean flag
+    mode: 'dark',
+    darkMode: true, // ✅ boolean flag
     colors: {
-        backgroundColor: '#0f172b',
+        backgroundColor: '#000000',
         fontColor: '#fff',
     }
 };
