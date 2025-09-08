@@ -14,7 +14,7 @@ const Sidebar = ({
     <div className="flex">
       {/* Sidebar */}
       <aside
-        className="hidden sm:flex flex-shrink-0 w-64 shadow-lg p-4 flex-col transition-colors duration-500 ease-in-out"
+        className="hidden sm:flex flex-shrink-0 w-64 h-full md:overflow-y-scroll bg-red-900 shadow-lg p-4 flex-col transition-colors duration-500 ease-in-out"
         style={{ backgroundColor, color: fontColor }}
       >
         <nav className="flex flex-col gap-4">

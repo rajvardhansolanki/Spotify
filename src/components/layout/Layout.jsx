@@ -33,7 +33,7 @@ const Layout = ({ children }) => {
 
   return (
     <div
-      className="w-full h-screen flex flex-col overflow-hidden transition-colors duration-500 ease-in-out"
+      className="w-full h-full flex flex-col overflow-hidden transition-colors duration-500 ease-in-out"
       style={{ backgroundColor }}
     >
       {/* Navbar */}
