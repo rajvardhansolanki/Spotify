@@ -27,12 +27,17 @@ const Layout = ({ children }) => {
     { path: ROUTES.SETTING_PAGE, label: "Settings" },
   ];
 
+  // Fixed heights
+  const NAVBAR_HEIGHT = "4rem"; // 64px
+  const PLAYER_HEIGHT = "5rem"; // 80px
+
   return (
     <div
       className="w-full h-screen flex flex-col overflow-hidden transition-colors duration-500 ease-in-out"
+      style={{ backgroundColor }}
     >
       {/* Navbar */}
-      <div className="w-full" style={{ height: "4rem" }}>
+      <div className="w-full" style={{ height: NAVBAR_HEIGHT }}>
         <Navbvar
           setIsOpen={setIsOpen}
           logo={Logo}
@@ -43,8 +48,11 @@ const Layout = ({ children }) => {
         />
       </div>
 
-      {/* Main Layout */}
-      <div className="flex flex-1 w-full h-full overflow-hidden">
+      {/* Middle section (Sidebar + Content) */}
+      <div
+        className="flex w-full overflow-hidden"
+        style={{ height: `calc(100vh - ${NAVBAR_HEIGHT} - ${PLAYER_HEIGHT})` }}
+      >
         {/* Sidebar */}
         <Sidebar
           backgroundColor={backgroundColor}
@@ -56,16 +64,16 @@ const Layout = ({ children }) => {
           setIsOpen={setIsOpen}
         />
 
-        {/* Main Content */}
-        <div className="flex-1 relative overflow-hidden">
+        {/* Content (only scrollable part) */}
+        <div className="flex-1">
           <RenderContent>{children}</RenderContent>
         </div>
       </div>
 
-      {/* Player (Fixed at bottom, no scroll issue) */}
+      {/* Player */}
       <div
-        className="w-full h-20 flex items-center border-t border-green-900"
-        style={{ backgroundColor }}
+        className="w-full flex items-center border-t border-green-900 absolute bottom-0"
+        style={{ height: PLAYER_HEIGHT, backgroundColor }}
       >
         <Player />
       </div>

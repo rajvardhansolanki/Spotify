@@ -13,7 +13,7 @@ const Home = () => {
         <RowCard />
       </div>
       <div className="w-full p-3 rounded-xl shadow-md mt-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4" style={{ backgroundColor: backgroundColor }}>
-        {[...Array(400)].map((_, i) => (
+        {[...Array(4)].map((_, i) => (
           <div key={i} className="bg-black rounded-xl p-3 hover:bg-[#282828] transition duration-300 cursor-pointer">
             <img
               src={ThumbNill}
