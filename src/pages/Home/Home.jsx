@@ -1,6 +1,6 @@
 
 import { useDispatch, useSelector } from "react-redux";
-import ThumbNill from "../../assets/Images/Thumbnil/three.jpg";
+import CustomSlider from "../../components/customSlider/CustomSlider.jsx";
 import RowCard from "../../components/rowCard/RowCard.jsx";
 const Home = () => {
   const dispatch = useDispatch();
@@ -9,23 +9,12 @@ const Home = () => {
   );
   return (
     <>
-      <div className="w-full p-3 md:p-6 rounded-xl shadow-md" style={{ backgroundColor: backgroundColor }}>
+      <div className="w-full p-3 md:p-6 rounded-xl shadow-md  border-1 border-gray-700" style={{ backgroundColor: backgroundColor }}>
         <RowCard />
       </div>
-      <div className="w-full p-3 rounded-xl shadow-md mt-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4" style={{ backgroundColor: backgroundColor }}>
-        {[...Array(4)].map((_, i) => (
-          <div key={i} className="bg-black rounded-xl p-3 hover:bg-[#282828] transition duration-300 cursor-pointer">
-            <img
-              src={ThumbNill}
-              alt="image"
-              className="rounded-lg w-full h-48 object-cover mb-3"
-            />
-            <h3 className="text-white font-semibold truncate">Sailyara</h3>
-            <p className="text-gray-400 text-sm truncate">Sailyara</p>
-          </div>
-        ))}
+      <div className="border-1 border-gray-700 w-full h-full mt-2 p-3 md:p-6 gap-x-2 rounded-xl shadow-md flex flex-wrap overflow-hidden" style={{ backgroundColor: backgroundColor }}>
+        <CustomSlider />
       </div>
-
     </>
   );
 };

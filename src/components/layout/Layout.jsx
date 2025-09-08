@@ -30,6 +30,8 @@ const Layout = ({ children }) => {
   // Fixed heights
   const NAVBAR_HEIGHT = "4rem"; // 64px
   const PLAYER_HEIGHT = "5rem"; // 80px
+  const SIDEBAR_WIDTH = "16rem"; // 256px (Tailwind w-64)
+
 
   return (
     <div
@@ -65,7 +67,9 @@ const Layout = ({ children }) => {
         />
 
         {/* Content (only scrollable part) */}
-        <div className="flex-1">
+        <div className="flex-1" style={{
+          width: `calc(100% - ${SIDEBAR_WIDTH})`,
+        }}>
           <RenderContent>{children}</RenderContent>
         </div>
       </div>
