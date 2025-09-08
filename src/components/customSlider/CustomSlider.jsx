@@ -101,7 +101,7 @@ const CustomSlider = () => {
               <img
                 src={playlist.image}
                 alt={playlist.title}
-                className="w-full aspect-square rounded-xl object-cover shadow-lg"
+                className="w-full aspect-square rounded-xl object-cover shadow-lg hover:transform hover:scale-105 hover:shadow-2xl hover:shadow-gray-500 transition duration-300 ease-in-out"
               />
 
               {/* Title & Artist */}
