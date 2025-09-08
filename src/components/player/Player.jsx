@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 // Demo playlist
 const playlist = [
@@ -41,6 +42,7 @@ const playlist = [
 ];
 
 const Player = () => {
+  const dispatch = useDispatch();
   const audioRef = useRef(null);
 
   // State
@@ -48,8 +50,29 @@ const Player = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [volume, setVolume] = useState(0.7);
+  const [showVolume, setShowVolume] = useState(false);
+  const { backgroundColor, fontColor } = useSelector(
+    (state) => state.theme.colors
+  );
+
 
   const currentSong = playlist[currentIndex];
+
+  const handleVolumeChange = (e) => {
+    const newVolume = parseFloat(e.target.value);
+    setVolume(newVolume);
+    if (audioRef.current) {
+      audioRef.current.volume = newVolume;
+    }
+  };
+
+  // Choose icon based on volume
+  const getVolumeIcon = () => {
+    if (volume === 0) return "🔇";
+    if (volume < 0.5) return "🔉";
+    return "🔊";
+  };
 
   // Play / Pause toggle
   const togglePlay = () => {
@@ -110,6 +133,18 @@ const Player = () => {
     return `${minutes}:${seconds}`;
   };
 
+  useEffect(() => {
+    if (!audioRef.current) return;
+
+    audioRef.current.volume = volume;
+
+    if (isPlaying) {
+      audioRef.current.play().catch(() => setIsPlaying(false));
+    } else {
+      audioRef.current.pause();
+    }
+  }, [isPlaying, currentSong, volume]);
+
   return (
     <div className="w-full h-full flex">
       <div className="md:w-2/6 w-full h-full p-2 flex gap-2 justify-between">
@@ -164,10 +199,20 @@ const Player = () => {
                 </svg>
               )}
             </div>
-            <div onClick={handleNext} className="cursor-pointer">
+            <div className="cursor-pointer relative inline-block">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 stroke-amber-100">
                 <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
               </svg>
+              {getVolumeIcon()}
+              <input
+                type="range"
+                min="0"
+                max="1"
+                step="0.01"
+                value={volume}
+                onChange={handleVolumeChange}
+                className="absolute bottom-[120%] left-1/2 -translate-x-1/2 -rotate-90 w-28 hidden group-hover:block"
+              />
             </div>
           </div>
         </div>
@@ -203,14 +248,40 @@ const Player = () => {
           </div>
           <div className="flex items-center gap-4 mr-4">
             <div className="cursor-pointer">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-5 h-5 stroke-amber-50">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6 stroke-amber-50">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
               </svg>
             </div>
             <div className="cursor-pointer">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-5 h-5 stroke-amber-50">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19.114 5.636a9 9 0 0 1 0 12.728M16.463 8.288a5.25 5.25 0 0 1 0 7.424M6.75 8.25l4.72-4.72a.75.75 0 0 1 1.28.53v15.88a.75.75 0 0 1-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.009 9.009 0 0 1 2.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75Z" />
-              </svg>
+              <div className="relative">
+                <div
+                  onClick={() => setShowVolume(!showVolume)}
+                >
+                  {volume === 0 ?
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 stroke-2 stroke-white">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 9.75 19.5 12m0 0 2.25 2.25M19.5 12l2.25-2.25M19.5 12l-2.25 2.25m-10.5-6 4.72-4.72a.75.75 0 0 1 1.28.53v15.88a.75.75 0 0 1-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.009 9.009 0 0 1 2.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75Z" />
+                    </svg>
+                    :
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 stroke-2 stroke-white">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M19.114 5.636a9 9 0 0 1 0 12.728M16.463 8.288a5.25 5.25 0 0 1 0 7.424M6.75 8.25l4.72-4.72a.75.75 0 0 1 1.28.53v15.88a.75.75 0 0 1-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.009 9.009 0 0 1 2.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75Z" />
+                    </svg>
+                  }
+                </div>
+
+                {showVolume && (
+                  <div className="absolute bottom-20 left-1/2 -translate-x-1/2 p-2 rounded-lg shadow-lg rotate-[270deg]" style={{ backgroundColor: backgroundColor, border: `1px solid ${fontColor}` }}>
+                    <input
+                      type="range"
+                      min="0"
+                      max="1"
+                      step="0.01"
+                      value={volume}
+                      onChange={(e) => setVolume(parseFloat(e.target.value))}
+                      className="w-24 accent-green-900"
+                    />
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
