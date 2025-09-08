@@ -12,19 +12,19 @@ const Home = () => {
       <div className="w-full p-3 md:p-6 rounded-xl shadow-md  border-1 border-[#0d542b]" style={{ backgroundColor: backgroundColor }}>
         <RowCard />
       </div>
-      <div className="border-1 border-[#0d542b] w-full mt-2 p-3 md:p-5  rounded-xl shadow-md flex flex-wrap overflow-hidden" style={{ backgroundColor: backgroundColor }}>
+      <div className="border-1 border-[#0d542b] w-full mt-1 p-3 md:p-4  rounded-xl shadow-md flex flex-wrap overflow-hidden" style={{ backgroundColor: backgroundColor }}>
         <CustomSlider />
       </div>
-      <div className="border-1 border-[#0d542b] w-full mt-2 p-3 md:p-5  rounded-xl shadow-md flex flex-wrap overflow-hidden" style={{ backgroundColor: backgroundColor }}>
+      <div className="border-1 border-[#0d542b] w-full mt-1 p-3 md:p-4  rounded-xl shadow-md flex flex-wrap overflow-hidden" style={{ backgroundColor: backgroundColor }}>
         <CustomSlider />
       </div>
-      <div className="border-1 border-[#0d542b] w-full mt-2 p-3 md:p-5  rounded-xl shadow-md flex flex-wrap overflow-hidden" style={{ backgroundColor: backgroundColor }}>
+      <div className="border-1 border-[#0d542b] w-full mt-1 p-3 md:p-4  rounded-xl shadow-md flex flex-wrap overflow-hidden" style={{ backgroundColor: backgroundColor }}>
         <CustomSlider />
       </div>
-      <div className="border-1 border-[#0d542b] w-full mt-2 p-3 md:p-5  rounded-xl shadow-md flex flex-wrap overflow-hidden" style={{ backgroundColor: backgroundColor }}>
+      <div className="border-1 border-[#0d542b] w-full mt-1 p-3 md:p-4  rounded-xl shadow-md flex flex-wrap overflow-hidden" style={{ backgroundColor: backgroundColor }}>
         <CustomSlider />
       </div>
-      <div className="border-1 border-[#0d542b] w-full mt-2 p-3 md:p-5  rounded-xl shadow-md flex flex-wrap overflow-hidden" style={{ backgroundColor: backgroundColor }}>
+      <div className="border-1 border-[#0d542b] w-full mt-1 p-3 md:p-4  rounded-xl shadow-md flex flex-wrap overflow-hidden" style={{ backgroundColor: backgroundColor }}>
         <CustomSlider />
       </div>
 

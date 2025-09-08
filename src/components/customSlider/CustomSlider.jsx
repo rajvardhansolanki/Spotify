@@ -61,7 +61,7 @@ const CustomSlider = () => {
     arrows: false,
     speed: 500,
     slidesToShow: 5, // default for desktop
-    slidesToScroll: 1,
+    slidesToScroll: 5,
     rows: 1,
     slidesPerRow: 1,
     responsive: [
