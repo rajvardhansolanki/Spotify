@@ -1,4 +1,4 @@
-import { toggleTheme } from "../../features/theme/themeSlice";
+import { toggleTheme } from "../../features/theme/themeSlice.js";
 
 const Navbvar = ({
   setIsOpen,

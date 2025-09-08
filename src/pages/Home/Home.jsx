@@ -1,7 +1,7 @@
 
 import { useDispatch, useSelector } from "react-redux";
 import ThumbNill from "../../assets/Images/Thumbnil/three.jpg";
-import RowCard from "../../components/rowCard/RowCard";
+import RowCard from "../../components/rowCard/RowCard.jsx";
 const Home = () => {
   const dispatch = useDispatch();
   const { backgroundColor, fontColor } = useSelector(

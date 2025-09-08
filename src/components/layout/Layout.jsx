@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Logo from "../../assets/Logos/brand-logo.png";
-import { ROUTES } from "../../constants/routes";
-import RenderContent from "../../pages/Main/RenderContent";
-import Navbvar from "../navbar/Navbvar";
-import Player from "../player/Player";
-import Sidebar from "../sideBar/Sidebar";
+import { ROUTES } from "../../constants/routes.js";
+import RenderContent from "../../pages/Main/RenderContent.jsx";
+import Navbvar from "../navbar/Navbvar.jsx";
+import Player from "../player/Player.jsx";
+import Sidebar from "../sideBar/Sidebar.jsx";
 
 const Layout = ({ children }) => {
   const dispatch = useDispatch();
