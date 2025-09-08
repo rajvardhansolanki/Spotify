@@ -15,7 +15,7 @@ const RowCard = () => {
           </div>
 
           {/* Text section - takes remaining space */}
-          <div className="flex-1 bg-[#576666] flex items-center pl-2.5">
+          <div className="flex-1 bg-[#0d542b] flex items-center pl-2.5">
             <p className="text-white truncate text-wrap">Shap of you</p>
           </div>
         </div>
@@ -30,7 +30,7 @@ const RowCard = () => {
           </div>
 
           {/* Text section - takes remaining space */}
-          <div className="flex-1 bg-[#576666] flex items-center pl-2.5">
+          <div className="flex-1 bg-[#0d542b] flex items-center pl-2.5">
             <p className="text-white truncate text-wrap">Shap of you</p>
           </div>
         </div>
@@ -45,7 +45,7 @@ const RowCard = () => {
           </div>
 
           {/* Text section - takes remaining space */}
-          <div className="flex-1 bg-[#576666] flex items-center pl-2.5">
+          <div className="flex-1 bg-[#0d542b] flex items-center pl-2.5">
             <p className="text-white truncate text-wrap">Shap of you</p>
           </div>
         </div>
@@ -60,7 +60,7 @@ const RowCard = () => {
           </div>
 
           {/* Text section - takes remaining space */}
-          <div className="flex-1 bg-[#576666] flex items-center pl-2.5">
+          <div className="flex-1 bg-[#0d542b] flex items-center pl-2.5">
             <p className="text-white truncate text-wrap">Shap of you</p>
           </div>
         </div>
@@ -75,7 +75,7 @@ const RowCard = () => {
           </div>
 
           {/* Text section - takes remaining space */}
-          <div className="flex-1 bg-[#576666] flex items-center pl-2.5">
+          <div className="flex-1 bg-[#0d542b] flex items-center pl-2.5">
             <p className="text-white truncate text-wrap">Shap of you</p>
           </div>
         </div>
@@ -90,7 +90,7 @@ const RowCard = () => {
           </div>
 
           {/* Text section - takes remaining space */}
-          <div className="flex-1 bg-[#576666] flex items-center pl-2.5">
+          <div className="flex-1 bg-[#0d542b] flex items-center pl-2.5">
             <p className="text-white truncate text-wrap">Shap of you</p>
           </div>
         </div>
