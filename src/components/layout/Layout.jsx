@@ -5,7 +5,7 @@ import { ROUTES } from "../../constants/routes.js";
 import RenderContent from "../../pages/Main/RenderContent.jsx";
 import Navbvar from "../navbar/Navbvar.jsx";
 import Player from "../player/Player.jsx";
-import Sidebar from "../sideBar/Sidebar.jsx";
+// import Sidebar from "../sideBar/Sidebar.jsx";
 
 const Layout = ({ children }) => {
   const dispatch = useDispatch();
@@ -54,7 +54,7 @@ const Layout = ({ children }) => {
         style={{ height: `calc(100vh - ${NAVBAR_HEIGHT} - ${PLAYER_HEIGHT})` }}
       >
         {/* Sidebar */}
-        <Sidebar
+        {/* <Sidebar
           backgroundColor={backgroundColor}
           color={fontColor}
           links={links}
@@ -62,7 +62,7 @@ const Layout = ({ children }) => {
           activeLinkClass={activeLinkClass}
           isOpen={isOpen}
           setIsOpen={setIsOpen}
-        />
+        /> */}
 
         {/* Content (only scrollable part) */}
         <div className="flex-1">
