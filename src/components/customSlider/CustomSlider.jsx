@@ -12,7 +12,7 @@ const useResponsiveSlides = () => {
       if (w >= 1024) setSlidesToShow(5);
       else if (w >= 768) setSlidesToShow(4);
       else if (w >= 640) setSlidesToShow(2);
-      else setSlidesToShow(1);
+      else setSlidesToShow(2);
     };
 
     update();
