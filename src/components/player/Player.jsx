@@ -1,46 +1,44 @@
 import { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
-import playlist from "../../JsonData/data.json";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCurrentTrack, selectTracks, setCurrentTrackId } from "../../features/getTracks/getTracks";
 
 const Player = () => {
+  const dispatch = useDispatch();
   const audioRef = useRef(null);
 
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const allTracks = useSelector(selectTracks);
+  const currentTrack = useSelector(selectCurrentTrack);
+  const currentTrackId = useSelector((state) => state.getTracks.currentTrackId);
+  const { backgroundColor, fontColor } = useSelector((state) => state.theme.colors);
+  const darkMode = useSelector((state) => state.theme.darkMode);
+
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [volume, setVolume] = useState(0.7);
   const [showVolume, setShowVolume] = useState(false);
-  const { backgroundColor, fontColor } = useSelector(
-    (state) => state.theme.colors
-  );
 
-  const darkMode = useSelector((state) => state.theme.darkMode);
+  // Update audio ref volume
+  useEffect(() => {
+    if (audioRef.current) audioRef.current.volume = volume;
+  }, [volume]);
 
-
-
-  const currentSong = playlist[currentIndex];
-
-  const handleVolumeChange = (e) => {
-    const newVolume = parseFloat(e.target.value);
-    setVolume(newVolume);
-    if (audioRef.current) {
-      audioRef.current.volume = newVolume;
+  // Auto-play when track changes
+  useEffect(() => {
+    if (!audioRef.current) return;
+    if (currentTrack && isPlaying) {
+      audioRef.current.play().catch(() => setIsPlaying(false));
     }
-  };
+  }, [currentTrack, isPlaying]);
 
   const togglePlay = () => {
-    if (isPlaying) {
-      audioRef.current.pause();
-    } else {
-      audioRef.current.play();
-    }
+    if (!currentTrack) return;
+    if (isPlaying) audioRef.current.pause();
+    else audioRef.current.play();
     setIsPlaying(!isPlaying);
   };
 
-  const handleTimeUpdate = () => {
-    setCurrentTime(audioRef.current.currentTime);
-  };
+  const handleTimeUpdate = () => setCurrentTime(audioRef.current.currentTime);
 
   const handleSeek = (e) => {
     const seekTime = e.target.value;
@@ -49,48 +47,37 @@ const Player = () => {
   };
 
   const handleNext = () => {
-    const nextIndex = (currentIndex + 1) % playlist.length;
-    setCurrentIndex(nextIndex);
+    if (!currentTrack) return;
+    const currentIndex = allTracks.findIndex((t) => t.id === currentTrackId);
+    const nextIndex = (currentIndex + 1) % allTracks.length;
+    dispatch(setCurrentTrackId(allTracks[nextIndex].id));
     setIsPlaying(true);
   };
 
   const handlePrev = () => {
-    const prevIndex =
-      (currentIndex - 1 + playlist.length) % playlist.length;
-    setCurrentIndex(prevIndex);
+    if (!currentTrack) return;
+    const currentIndex = allTracks.findIndex((t) => t.id === currentTrackId);
+    const prevIndex = (currentIndex - 1 + allTracks.length) % allTracks.length;
+    dispatch(setCurrentTrackId(allTracks[prevIndex].id));
     setIsPlaying(true);
   };
 
-  useEffect(() => {
-    if (isPlaying) {
-      audioRef.current.play();
-    }
-  }, [currentIndex]);
-
   const handleLoadedMetadata = () => {
-    setDuration(audioRef.current.duration);
+    if (audioRef.current) setDuration(audioRef.current.duration);
+  };
+
+  const handleVolumeChange = (e) => {
+    setVolume(parseFloat(e.target.value));
   };
 
   const formatTime = (time) => {
     if (isNaN(time)) return "0:00";
     const minutes = Math.floor(time / 60);
-    const seconds = Math.floor(time % 60)
-      .toString()
-      .padStart(2, "0");
+    const seconds = Math.floor(time % 60).toString().padStart(2, "0");
     return `${minutes}:${seconds}`;
   };
 
-  useEffect(() => {
-    if (!audioRef.current) return;
-
-    audioRef.current.volume = volume;
-
-    if (isPlaying) {
-      audioRef.current.play().catch(() => setIsPlaying(false));
-    } else {
-      audioRef.current.pause();
-    }
-  }, [isPlaying, currentSong, volume]);
+  if (!currentTrack) return null;
 
   return (
     <div className="w-full h-full flex">
@@ -99,22 +86,23 @@ const Player = () => {
           <div className="md:w-[100px] md:h-[60px] w-[65px] h-[60px] overflow-hidden rounded-sm flex justify-center items-center">
             <img
               className="w-full h-full object-cover block"
-              src={currentSong.thumbnail}
-              alt="thumbnail"
+              src={currentTrack.thumbnail}
+              alt={currentTrack.name}
             />
           </div>
           <div className="md:w-full px-1 text-white">
             <p className="text-[0.8rem] font-bold truncate line-clamp-1">
-              {currentSong.name.split(" ").slice(0, 2).join(" ") +
-                (currentSong.name.split(" ").length > 2 ? "..." : "")}
+              {currentTrack.name.split(" ").slice(0, 2).join(" ") +
+                (currentTrack.name.split(" ").length > 2 ? "..." : "")}
             </p>
             <p className="text-[0.8rem] line-clamp-1">
-              {currentSong.artist.split(" ").slice(0, 2).join(" ") +
-                (currentSong.artist.split(" ").length > 2 ? "..." : "")}
+              {currentTrack.artist.split(" ").slice(0, 2).join(" ") +
+                (currentTrack.artist.split(" ").length > 2 ? "..." : "")}
             </p>
           </div>
-
         </div>
+
+        {/* Mobile Controls */}
         <div className="block md:hidden h-full">
           <div className="w-[200px] h-full flex justify-center items-center gap-4">
             <div onClick={handlePrev} className="cursor-pointer">
@@ -127,43 +115,25 @@ const Player = () => {
               className="md:w-18 w-12 h-12 mt-1 flex items-center justify-center rounded-full border border-white cursor-pointer"
             >
               {isPlaying ? (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  className="w-6 h-6 text-white"
-                >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-white">
                   <path d="M6.75 4.5h2.25v15H6.75V4.5zm8.25 0h2.25v15H15V4.5z" />
                 </svg>
               ) : (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  className="w-6 h-6 text-white"
-                >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-white">
                   <path d="M5 3v18l15-9L5 3z" />
                 </svg>
               )}
             </div>
-            <div className="cursor-pointer relative inline-block">
+            <div onClick={handleNext} className="cursor-pointer">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-8 h-8 stroke-amber-100">
                 <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
               </svg>
-              <input
-                type="range"
-                min="0"
-                max="1"
-                step="0.01"
-                value={volume}
-                onChange={handleVolumeChange}
-                className="absolute bottom-[120%] left-1/2 -translate-x-1/2 -rotate-90 w-28 hidden group-hover:block"
-              />
             </div>
           </div>
         </div>
       </div>
 
+      {/* Desktop Controls */}
       <div className="w-full h-full hidden md:block p-3">
         <div className="w-full h-[50%] flex gap-4 items-center justify-between">
           <div></div>
@@ -185,44 +155,38 @@ const Player = () => {
                 </svg>
               )}
             </div>
-
             <div onClick={handleNext} className="cursor-pointer">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 stroke-amber-50">
                 <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
               </svg>
             </div>
           </div>
+
+          {/* Volume Control */}
           <div className="flex items-center gap-4 mr-4">
             <div className="cursor-pointer">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 stroke-amber-50">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
-              </svg>
-            </div>
-            <div className="cursor-pointer">
               <div className="relative">
-                <div
-                  onClick={() => setShowVolume(!showVolume)}
-                >
-                  {volume === 0 ?
+                <div onClick={() => setShowVolume(!showVolume)}>
+                  {volume === 0 ? (
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 stroke-2 stroke-white">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 9.75 19.5 12m0 0 2.25 2.25M19.5 12l2.25-2.25M19.5 12l-2.25 2.25m-10.5-6 4.72-4.72a.75.75 0 0 1 1.28.53v15.88a.75.75 0 0 1-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.009 9.009 0 0 1 2.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75Z" />
                     </svg>
-                    :
+                  ) : (
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 stroke-2 stroke-white">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M19.114 5.636a9 9 0 0 1 0 12.728M16.463 8.288a5.25 5.25 0 0 1 0 7.424M6.75 8.25l4.72-4.72a.75.75 0 0 1 1.28.53v15.88a.75.75 0 0 1-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.009 9.009 0 0 1 2.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75Z" />
                     </svg>
-                  }
+                  )}
                 </div>
 
                 {showVolume && (
-                  <div className="absolute bottom-20 left-1/2 -translate-x-1/2 p-2 rounded-lg shadow-lg rotate-[270deg]" style={{ backgroundColor: backgroundColor, border: `1px solid ${fontColor}` }}>
+                  <div className="absolute bottom-20 left-1/2 -translate-x-1/2 p-2 rounded-lg shadow-lg rotate-[270deg]" style={{ backgroundColor, border: `1px solid ${fontColor}` }}>
                     <input
                       type="range"
                       min="0"
                       max="1"
                       step="0.01"
                       value={volume}
-                      onChange={(e) => setVolume(parseFloat(e.target.value))}
+                      onChange={handleVolumeChange}
                       className="w-24 accent-green-900"
                     />
                   </div>
@@ -231,6 +195,8 @@ const Player = () => {
             </div>
           </div>
         </div>
+
+        {/* Slider */}
         <div className="w-full h-[50%] flex items-end">
           <div className="flex items-center w-full gap-2">
             <span className="text-xs text-gray-300 w-10 text-right">
@@ -264,18 +230,17 @@ const Player = () => {
               }}
             />
 
-
             <span className="text-xs text-gray-300 w-10 text-left">
               {formatTime(duration)}
             </span>
           </div>
-
         </div>
       </div>
 
+      {/* Audio element */}
       <audio
         ref={audioRef}
-        src={currentSong.url}
+        src={currentTrack.url}
         onTimeUpdate={handleTimeUpdate}
         onLoadedMetadata={handleLoadedMetadata}
         onEnded={handleNext}

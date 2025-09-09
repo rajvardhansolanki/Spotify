@@ -14,7 +14,6 @@ const Layout = ({ children }) => {
     (state) => state.theme.colors
   );
   const darkMode = useSelector((state) => state.theme.darkMode);
-
   const activeLinkClass = "bg-green-900 text-white";
   const inactiveLinkClass =
     "text-gray-400 hover:bg-green-900 hover:text-white";

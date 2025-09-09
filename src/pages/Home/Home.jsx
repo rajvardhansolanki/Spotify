@@ -18,7 +18,7 @@ const Home = () => {
       <div className="border-1 border-[#0d542b] w-full mt-1 p-3 md:p-4  rounded-xl shadow-md flex flex-wrap overflow-hidden" style={{ backgroundColor: backgroundColor }}>
         <CustomSlider data={tracks} heading={"Reacently Played"} />
       </div>
-      <div className="border-1 border-[#0d542b] w-full mt-1 p-3 md:p-4  rounded-xl shadow-md flex flex-wrap overflow-hidden" style={{ backgroundColor: backgroundColor }}>
+      {/* <div className="border-1 border-[#0d542b] w-full mt-1 p-3 md:p-4  rounded-xl shadow-md flex flex-wrap overflow-hidden" style={{ backgroundColor: backgroundColor }}>
         <CustomSlider data={tracks} heading={"Library"} />
       </div>
       <div className="border-1 border-[#0d542b] w-full mt-1 p-3 md:p-4  rounded-xl shadow-md flex flex-wrap overflow-hidden" style={{ backgroundColor: backgroundColor }}>
@@ -29,7 +29,7 @@ const Home = () => {
       </div>
       <div className="border-1 border-[#0d542b] w-full mt-1 p-3 md:p-4  rounded-xl shadow-md flex flex-wrap overflow-hidden" style={{ backgroundColor: backgroundColor }}>
         <CustomSlider data={tracks} heading={"Podcasts"} />
-      </div>
+      </div> */}
 
     </>
   );
