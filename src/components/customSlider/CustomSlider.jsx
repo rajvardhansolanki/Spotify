@@ -1,8 +1,9 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
+// import tracksData from "../../JsonData/data.json";
 
-const playlists = [
+const tracksData = [
   {
     id: 1,
     title: "New Music Friday India",
@@ -94,7 +95,7 @@ const CustomSlider = () => {
   return (
     <div className="w-full">
       <Slider {...settings}>
-        {playlists.map((playlist) => (
+        {tracksData.map((playlist) => (
           <div key={playlist.id} className="px-2">
             <div className="relative group cursor-pointer">
               {/* Album Image */}
