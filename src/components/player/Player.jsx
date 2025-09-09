@@ -31,6 +31,7 @@ const Player = () => {
     }
   }, [currentTrack, isPlaying]);
 
+
   const togglePlay = () => {
     if (!currentTrack) return;
     if (isPlaying) audioRef.current.pause();
@@ -76,6 +77,11 @@ const Player = () => {
     const seconds = Math.floor(time % 60).toString().padStart(2, "0");
     return `${minutes}:${seconds}`;
   };
+
+  useEffect(() => {
+    if (currentTrack) setIsPlaying(true);
+  }, [currentTrackId]);
+
 
   if (!currentTrack) return null;
 
