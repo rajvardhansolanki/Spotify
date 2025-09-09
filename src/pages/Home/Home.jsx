@@ -107,7 +107,7 @@ const Home = () => {
         <RowCard />
       </div>
       <div className="border-1 border-[#0d542b] w-full mt-1 p-3 md:p-4  rounded-xl shadow-md flex flex-wrap overflow-hidden" style={{ backgroundColor: backgroundColor }}>
-        <CustomSlider data={tracksData} heading={"Playlists"} />
+        <CustomSlider data={tracksData} heading={"Reacently Played"} />
       </div>
       <div className="border-1 border-[#0d542b] w-full mt-1 p-3 md:p-4  rounded-xl shadow-md flex flex-wrap overflow-hidden" style={{ backgroundColor: backgroundColor }}>
         <CustomSlider data={tracksData} heading={"Library"} />
