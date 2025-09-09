@@ -258,7 +258,7 @@ const CustomSlider = ({ data, heading }) => {
           )}
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 

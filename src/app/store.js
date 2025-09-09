@@ -1,8 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit';
-import themeReducer from '../features/theme/themeSlice';
+import { configureStore } from "@reduxjs/toolkit";
+import getTracksReducer from "../features/getTracks/getTracks";
+import themeReducer from "../features/theme/themeSlice";
 
 export const store = configureStore({
-    reducer: {
-        theme: themeReducer,
-    },
+  reducer: {
+    theme: themeReducer,
+    getTracks: getTracksReducer,
+  },
 });
