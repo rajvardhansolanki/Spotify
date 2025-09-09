@@ -20,7 +20,7 @@ const useResponsiveSlides = () => {
   return slidesToShow;
 };
 
-const CustomSlider = ({ data }) => {
+const CustomSlider = ({ data, heading }) => {
   const slidesToShow = useResponsiveSlides();
   const containerRef = useRef(null); // viewport
   const trackRef = useRef(null); // sliding track
@@ -186,7 +186,7 @@ const CustomSlider = ({ data }) => {
       <div className="flex justify-between mt-1 mb-4 md:mt-1 md:mb-4">
         <div className="px-2 md:px-3 ">
           <h2 className="text-xl md:text-2xl font-bold text-white hover:underline cursor-pointer">
-            Playlists
+            {heading}
           </h2>
         </div>
 

@@ -107,20 +107,20 @@ const Home = () => {
         <RowCard />
       </div>
       <div className="border-1 border-[#0d542b] w-full mt-1 p-3 md:p-4  rounded-xl shadow-md flex flex-wrap overflow-hidden" style={{ backgroundColor: backgroundColor }}>
-        <CustomSlider data={tracksData} />
-      </div>
-      {/* <div className="border-1 border-[#0d542b] w-full mt-1 p-3 md:p-4  rounded-xl shadow-md flex flex-wrap overflow-hidden" style={{ backgroundColor: backgroundColor }}>
-        <CustomSlider />
+        <CustomSlider data={tracksData} heading={"Playlists"} />
       </div>
       <div className="border-1 border-[#0d542b] w-full mt-1 p-3 md:p-4  rounded-xl shadow-md flex flex-wrap overflow-hidden" style={{ backgroundColor: backgroundColor }}>
-        <CustomSlider />
+        <CustomSlider data={tracksData} heading={"Library"} />
       </div>
       <div className="border-1 border-[#0d542b] w-full mt-1 p-3 md:p-4  rounded-xl shadow-md flex flex-wrap overflow-hidden" style={{ backgroundColor: backgroundColor }}>
-        <CustomSlider />
+        <CustomSlider data={tracksData} heading={"Favorite"} />
       </div>
       <div className="border-1 border-[#0d542b] w-full mt-1 p-3 md:p-4  rounded-xl shadow-md flex flex-wrap overflow-hidden" style={{ backgroundColor: backgroundColor }}>
-        <CustomSlider />
-      </div> */}
+        <CustomSlider data={tracksData} heading={"Discover"} />
+      </div>
+      <div className="border-1 border-[#0d542b] w-full mt-1 p-3 md:p-4  rounded-xl shadow-md flex flex-wrap overflow-hidden" style={{ backgroundColor: backgroundColor }}>
+        <CustomSlider data={tracksData} heading={"Podcasts"} />
+      </div>
 
     </>
   );
