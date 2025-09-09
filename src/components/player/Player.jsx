@@ -16,6 +16,9 @@ const Player = () => {
     (state) => state.theme.colors
   );
 
+  const darkMode = useSelector((state) => state.theme.darkMode);
+
+
 
   const currentSong = playlist[currentIndex];
 
@@ -241,25 +244,33 @@ const Player = () => {
               max={duration}
               value={currentTime}
               onChange={handleSeek}
-              className="w-full h-1 bg-gray-600 rounded-lg appearance-none cursor-pointer accent-amber-400
-             [&::-webkit-slider-thumb]:appearance-none
-             [&::-webkit-slider-thumb]:w-3
-             [&::-webkit-slider-thumb]:h-3
-             [&::-webkit-slider-thumb]:rounded-full
-             [&::-webkit-slider-thumb]:bg-green-900
-             [&::-webkit-slider-thumb]:cursor-pointer
-             [&::-moz-range-thumb]:w-3
-             [&::-moz-range-thumb]:h-3
-             [&::-moz-range-thumb]:rounded-full
-             [&::-moz-range-thumb]:bg-green-900
-             [&::-moz-range-thumb]:border-0
-             [&::-moz-range-thumb]:cursor-pointer"
+              className={`w-full h-1 rounded-lg appearance-none cursor-pointer
+        accent-amber-400
+        [&::-webkit-slider-thumb]:appearance-none
+        [&::-webkit-slider-thumb]:w-3
+        [&::-webkit-slider-thumb]:h-3
+        [&::-webkit-slider-thumb]:rounded-full
+        [&::-webkit-slider-thumb]:cursor-pointer
+        [&::-moz-range-thumb]:w-3
+        [&::-moz-range-thumb]:h-3
+        [&::-moz-range-thumb]:rounded-full
+        [&::-moz-range-thumb]:border-0
+        [&::-moz-range-thumb]:cursor-pointer
+        ${darkMode
+                  ? '[&::-webkit-slider-thumb]:bg-green-600 '
+                  : '[&::-webkit-slider-thumb]:bg-white'
+                }`}
+              style={{
+                background: `linear-gradient(to right, ${darkMode ? '#0D542B' : '#fff'} ${(currentTime / duration) * 100}%, #4b5563 ${(currentTime / duration) * 100}%)`,
+              }}
             />
+
 
             <span className="text-xs text-gray-300 w-10 text-left">
               {formatTime(duration)}
             </span>
           </div>
+
         </div>
       </div>
 
