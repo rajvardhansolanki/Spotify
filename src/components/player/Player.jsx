@@ -1,175 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-// Demo playlist
-const playlist = [
-  {
-    "id": "550e2840-e29b-41d4-a716-446655440000",
-    "name": "Saiyaara",
-    "artist": "Gulzar,Shreya Ghosal",
-    "album": "Saiyaara",
-    "url": "https://spotify427.netlify.app/assets/SpotiDownloader.com%20-%20Saiyaara%20(From%20_Saiyaara_)%20-%20Tanishk%20Bagchi-CSwFI6ZU.mp3",
-    "thumbnail": "https://spotify427.netlify.app/assets/Saiyara-8D8dnX-x.jpg",
-    "liked": false,
-    "unliked": false
-  },
-  {
-    "id": "1450e840-e29b-41d4-a716-446655440001",
-    "name": "Thodi Si Daaru",
-    "artist": "Kishore Kumar",
-    "album": "Thodi Si Daaru",
-    "url": "https://spotify427.netlify.app/assets/SpotiDownloader.com%20-%20Thodi%20Si%20Daaru%20-%20AP%20Dhillon-BFxYSgNi.mp3",
-    "thumbnail": "https://spotify427.netlify.app/assets/Thodi%20Si%20Daaru-BrUM-9uc.jpg",
-    "liked": false,
-    "unliked": false
-  },
-  {
-    "id": "550e8400-e29b-41d4-a716-446655440002",
-    "name": "Sahiba",
-    "artist": "sahiba,Nice Love Song",
-    "album": "Sahiba",
-    "url": "https://spotify427.netlify.app/assets/SpotiDownloader.com%20-%20Sahiba%20-%20Jasleen%20Royal-BQiA-c7b.mp3",
-    "thumbnail": "https://spotify427.netlify.app/assets/Sahiba-DBR_QyeO.jpg",
-    "liked": false,
-    "unliked": false
-  },
-  {
-    "id": "150e8400-e29b-41d4-a716-446655440003",
-    "name": "PowerHouse",
-    "artist": "Bgm songs,Anirudh Ravichander",
-    "album": "Sahiba",
-    "url": "https://spotify427.netlify.app/assets/SpotiDownloader.com%20-%20Powerhouse%20-%20Anirudh%20Ravichander-BJkYm20D.mp3",
-    "thumbnail": "https://spotify427.netlify.app/assets/PowerHouse-Da9hgfJS.jpg",
-    "liked": false,
-    "unliked": false
-  },
-  {
-    "id": "250e8400-e29b-41d4-a716-446655440004",
-    "name": "Aam Jahe Munde",
-    "artist": "good sonh",
-    "album": "Aam Jahe Munde",
-    "url": "https://spotify427.netlify.app/assets/SpotiDownloader.com%20-%20Aam%20Jahe%20Munde%20-%20Parmish%20Verma-B74UyeXr.mp3",
-    "thumbnail": "https://spotify427.netlify.app/assets/Aam%20jahe%20munde-DuBPh7Uo.jpg",
-    "liked": false,
-    "unliked": false
-  },
-  {
-    "id": "350e8400-e29b-41d4-a716-446655440005",
-    "name": "Aavan Jaavan",
-    "artist": "Arjit Singh, Shreya Ghosal",
-    "album": "Aavan Jaavan",
-    "url": "https://spotify427.netlify.app/assets/SpotiDownloader.com%20-%20Aavan%20Jaavan%20(From%20_WAR%202_)%20-%20Pritam-CeV-p9zj.mp3",
-    "thumbnail": "https://spotify427.netlify.app/assets/Aavan%20Jaavan-5o5Zpn3j.jpg",
-    "liked": false,
-    "unliked": false
-  },
-  {
-    "id": "450e8400-e29b-41d4-a716-446655440006",
-    "name": "Dhun Saiyaara",
-    "artist": "Arjit Singh, Shreya Ghosal",
-    "album": "Dhun Saiyaara",
-    "url": "https://spotify427.netlify.app/assets/SpotiDownloader.com%20-%20Dhun%20-%20Mithoon-C44Z5vKn.mp3",
-    "thumbnail": "https://spotify427.netlify.app/assets/Dhun-BwKMAtf4.jpg",
-    "liked": false,
-    "unliked": false
-  },
-  {
-    "id": "550e8400-e29b-41d4-a716-446655440007",
-    "name": "Gabhru",
-    "artist": "Milka Singh, sahiba khan",
-    "album": "Gabhru",
-    "url": "https://spotify427.netlify.app/assets/SpotiDownloader.com%20-%20Gabhru!%20-%20Karan%20Aujla-BO-X2Yq-.mp3",
-    "thumbnail": "https://spotify427.netlify.app/assets/Ghabru-By1UlE6g.jpg",
-    "liked": false,
-    "unliked": false
-  },
-  {
-    "id": "650e8400-e29b-41d4-a716-446655440008",
-    "name": "Heeriye",
-    "artist": "Varun Dhawan, Shreya Ghosal",
-    "album": "Heeriye",
-    "url": "https://spotify427.netlify.app/assets/SpotiDownloader.com%20-%20Heeriye%20(feat.%20Arijit%20Singh)%20-%20Jasleen%20Royal-DD5hANuT.mp3",
-    "thumbnail": "https://spotify427.netlify.app/assets/Hrriya-DeDrXffU.jpg",
-    "liked": false,
-    "unliked": false
-  },
-  {
-    "id": "750e8400-e29b-41d4-a716-446655440009",
-    "name": "Apna Bana Le",
-    "artist": "Arjun Singh, Shreya Ghosal",
-    "album": "Apna Bana Le",
-    "url": "https://spotify427.netlify.app/assets/SpotiDownloader.com%20-%20Apna%20Bana%20Le%20-%20Sachin-Jigar-DbW0YkD2.mp3",
-    "thumbnail": "https://spotify427.netlify.app/assets/ApnaBanaLe-tjzxKhl3.jpg",
-    "liked": false,
-    "unliked": false
-  },
-  {
-    "id": "850e8400-e29b-41d4-a716-446655440010",
-    "name": "Preet Re",
-    "artist": "Ankit Tiwari, Shreya Ghosal",
-    "album": "Preet Re",
-    "url": "https://spotify427.netlify.app/assets/SpotiDownloader.com%20-%20Preet%20Re%20-%20From%20_Dhadak%202_%20-%20Darshan%20Raval-CQza6dVl.mp3",
-    "thumbnail": "https://spotify427.netlify.app/assets/Preet%20re-Efk2rBCM.jpg",
-    "liked": false,
-    "unliked": false
-  },
-  {
-    "id": "950e8400-e29b-41d4-a716-446655440011",
-    "name": "Raanjhanaa",
-    "artist": "A.R. Rahman",
-    "album": "Raanjhanaa",
-    "url": "https://spotify427.netlify.app/assets/SpotiDownloader.com%20-%20Raanjhan%20(From%20_Do%20Patti_)%20-%20Sachet-Parampara-btzCkqY7.mp3",
-    "thumbnail": "https://spotify427.netlify.app/assets/Raanjhanaa-qKmqO6lO.jpg",
-    "liked": false,
-    "unliked": false
-  },
-  {
-    "id": "1050e8400-e29b-41d4-a716-446655440012",
-    "name": "Superstar",
-    "artist": "Neha Kakkar",
-    "album": "Superstar",
-    "url": "https://spotify427.netlify.app/assets/SpotiDownloader.com%20-%20STFU%20-%20AP%20Dhillon-Ao_wonl5.mp3",
-    "thumbnail": "https://spotify427.netlify.app/assets/Spuerstar-CgvR_92x.jpg",
-    "liked": false,
-    "unliked": false
-  },
-  {
-    "id": "1150e8400-e29b-41d4-a716-446655440013",
-    "name": "Shidu 295",
-    "artist": "Shidu Musewala",
-    "album": "Shidu 295",
-    "url": "https://spotify427.netlify.app/assets/SpotiDownloader.com%20-%20295%20-%20Sidhu%20Moose%20Wala-BScqXvMg.mp3",
-    "thumbnail": "https://spotify427.netlify.app/assets/Shidu295-DPoIlMVL.jpg",
-    "liked": false,
-    "unliked": false
-  },
-  {
-    "id": "1250e8400-e29b-41d4-a716-446655440014",
-    "name": "Shidu 0008",
-    "artist": "Shidu Musewala",
-    "album": "Shidu 0008",
-    "url": "https://spotify427.netlify.app/assets/SpotiDownloader.com%20-%20295%20-%20Sidhu%20Moose%20Wala-BScqXvMg.mp3",
-    "thumbnail": "https://spotify427.netlify.app/assets/Shidu0008-CEK3x1e7.jpg",
-    "liked": false,
-    "unliked": false
-  },
-  {
-    "id": "1350e8400-e29b-41d4-a716-446655440015",
-    "name": "Pardesiya",
-    "artist": "Kishore Kumar",
-    "album": "Pardesiya",
-    "url": "https://spotify427.netlify.app/assets/SpotiDownloader.com%20-%20Pardesiya%20-%20From%20_Param%20Sundari_%20-%20Sachin-Jigar-BBU_YvbC.mp3",
-    "thumbnail": "https://spotify427.netlify.app/assets/Pardesiya-CHV0p8rj.jpg",
-    "liked": false,
-    "unliked": false
-  }
-]
+import playlist from "../../JsonData/data.json";
 
 const Player = () => {
   const dispatch = useDispatch();
   const audioRef = useRef(null);
 
-  // State
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -191,14 +27,6 @@ const Player = () => {
     }
   };
 
-  // Choose icon based on volume
-  const getVolumeIcon = () => {
-    if (volume === 0) return "🔇";
-    if (volume < 0.5) return "🔉";
-    return "🔊";
-  };
-
-  // Play / Pause toggle
   const togglePlay = () => {
     if (isPlaying) {
       audioRef.current.pause();
@@ -208,26 +36,22 @@ const Player = () => {
     setIsPlaying(!isPlaying);
   };
 
-  // Update current time
   const handleTimeUpdate = () => {
     setCurrentTime(audioRef.current.currentTime);
   };
 
-  // Handle seek
   const handleSeek = (e) => {
     const seekTime = e.target.value;
     audioRef.current.currentTime = seekTime;
     setCurrentTime(seekTime);
   };
 
-  // Next song
   const handleNext = () => {
     const nextIndex = (currentIndex + 1) % playlist.length;
     setCurrentIndex(nextIndex);
     setIsPlaying(true);
   };
 
-  // Previous song
   const handlePrev = () => {
     const prevIndex =
       (currentIndex - 1 + playlist.length) % playlist.length;
@@ -235,19 +59,16 @@ const Player = () => {
     setIsPlaying(true);
   };
 
-  // Auto play when song changes
   useEffect(() => {
     if (isPlaying) {
       audioRef.current.play();
     }
   }, [currentIndex]);
 
-  // Get song duration on load
   const handleLoadedMetadata = () => {
     setDuration(audioRef.current.duration);
   };
 
-  // Format time mm:ss
   const formatTime = (time) => {
     if (isNaN(time)) return "0:00";
     const minutes = Math.floor(time / 60);
@@ -327,7 +148,6 @@ const Player = () => {
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 stroke-amber-100">
                 <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
               </svg>
-              {getVolumeIcon()}
               <input
                 type="range"
                 min="0"
