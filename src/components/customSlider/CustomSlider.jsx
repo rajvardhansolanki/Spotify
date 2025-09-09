@@ -239,13 +239,13 @@ const CustomSlider = ({ data, heading }) => {
               <div key={item.id} style={{ width: slideWidth || "100%" }} className="px-1 flex-none">
                 <div className="relative group cursor-pointer">
                   <img
-                    src={item.image}
-                    alt={item.title}
+                    src={item.thumbnail}
+                    alt={item.name}
                     draggable={false}
                     className="w-full aspect-square rounded-xl object-cover shadow-lg hover:scale-105 hover:shadow-2xl transition-transform duration-300 ease-in-out"
                   />
                   <div className="mt-2">
-                    <h3 className="text-white font-semibold truncate">{item.title}</h3>
+                    <h3 className="text-white font-semibold truncate">{item.name}</h3>
                     <p className="text-gray-400 text-sm truncate">{item.artist}</p>
                   </div>
                 </div>

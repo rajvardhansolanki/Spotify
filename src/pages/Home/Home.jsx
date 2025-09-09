@@ -2,8 +2,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import CustomSlider from "../../components/customSlider/CustomSlider.jsx";
 import RowCard from "../../components/rowCard/RowCard.jsx";
+import tracksData from "../../JsonData/data.json";
 
-const tracksData = [
+const tracksData1 = [
   {
     id: 1,
     title: "New Music Friday India",
