@@ -34,9 +34,11 @@ const Player = () => {
 
   const togglePlay = () => {
     if (!currentTrack) return;
-    if (isPlaying) audioRef.current.pause();
-    else audioRef.current.play();
-    setIsPlaying(!isPlaying);
+    if (isPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play().catch(() => { });
+    }
   };
 
   const handleTimeUpdate = () => setCurrentTime(audioRef.current.currentTime);
@@ -79,9 +81,14 @@ const Player = () => {
   };
 
   useEffect(() => {
-    if (currentTrack) setIsPlaying(true);
+    if (currentTrack && audioRef.current) {
+      audioRef.current.play().then(() => {
+        setIsPlaying(true);
+      }).catch(() => {
+        setIsPlaying(false);
+      });
+    }
   }, [currentTrackId]);
-
 
   if (!currentTrack) return null;
 
@@ -250,6 +257,8 @@ const Player = () => {
         onTimeUpdate={handleTimeUpdate}
         onLoadedMetadata={handleLoadedMetadata}
         onEnded={handleNext}
+        onPlay={() => setIsPlaying(true)}
+        onPause={() => setIsPlaying(false)}
       />
     </div>
   );

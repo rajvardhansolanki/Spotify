@@ -39,7 +39,13 @@ const CustomSlider = ({ data, heading }) => {
 
   const handleClick = (currentTrackId) => {
     dispatch(setCurrentTrackId(currentTrackId));
+    // ensure autoplay for first click
+    const audio = document.querySelector("audio");
+    if (audio) {
+      audio.play().catch(() => { });
+    }
   };
+
   // update container width on mount & resize
   useEffect(() => {
     const updateSize = () => {
