@@ -11,7 +11,7 @@ const Home = () => {
   );
 
   return (
-    <>
+    <div className="w-full h-auto p-1">
       <div className="w-full flex flex-wrap p-3 md:p-6 rounded-xl shadow-md  border-1 border-[#0d542b] transition-colors duration-800 ease-in-out" style={{ backgroundColor: backgroundColor }}>
         <RowCard />
       </div>
@@ -31,7 +31,7 @@ const Home = () => {
         <CustomSlider data={tracks} heading={"Podcasts"} />
       </div>
 
-    </>
+    </div>
   );
 };
 
