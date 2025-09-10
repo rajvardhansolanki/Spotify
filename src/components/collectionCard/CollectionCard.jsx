@@ -1,5 +1,5 @@
 
-const RowCard = () => {
+const CollectionCard = () => {
   return (
     <>
       <div className="w-full h-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -151,4 +151,4 @@ const RowCard = () => {
   );
 }
 
-export default RowCard;
+export default CollectionCard;
