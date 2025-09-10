@@ -34,7 +34,7 @@ const Layout = ({ children }) => {
 
   return (
     <div
-      className="w-full h-full flex flex-col overflow-hidden transition-colors duration-500 ease-in-out"
+      className="w-full h-full flex flex-col overflow-hidden transition-colors duration-800 ease-in-out"
       style={{ backgroundColor }}
     >
       {/* Navbar */}
@@ -75,7 +75,7 @@ const Layout = ({ children }) => {
 
       {/* Player */}
       <div
-        className="w-full flex items-center border-t border-green-900 absolute bottom-0"
+        className="w-full flex items-center border-t border-green-900 absolute bottom-0 transition-colors duration-800 ease-in-out"
         style={{ height: PLAYER_HEIGHT, backgroundColor }}
       >
         <Player />

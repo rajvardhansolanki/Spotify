@@ -11,7 +11,7 @@ const Navbvar = ({
   return (
     <div>
       <header
-        className="flex w-full items-center justify-between px-4 sm:px-6 h-16 shadow-md flex-shrink-0 transition-colors duration-500 ease-in-out"
+        className="flex w-full items-center justify-between px-4 sm:px-6 h-16 shadow-md flex-shrink-0 transition-colors duration-800 ease-in-out"
         style={{ backgroundColor, color: fontColor }}
       >
         <div className="flex items-center gap-2">
@@ -43,7 +43,7 @@ const Navbvar = ({
 
         <button
           onClick={() => dispatch(toggleTheme())}
-          className="p-2 rounded-md bg-gray-200 text-gray-800 cursor-pointer transition-colors duration-500 ease-in-out"
+          className="p-2 rounded-md bg-gray-200 text-gray-800 cursor-pointer transition-colors duration-800 ease-in-out"
         >
           {darkMode ?
             "🌙"
