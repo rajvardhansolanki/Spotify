@@ -149,33 +149,35 @@ const CustomSlider = ({ data, heading }) => {
           }}
         >
           {Array.isArray(data) && data.length > 0 ? (
-            data.map((item) => (
-              <div key={item.id}>
-                <div
-                  style={{ width: slideWidth || "100%" }}
-                  className="px-1 flex-none"
-                  onClick={() => handleClick(item.id)}
-                >
-                  <div className="relative group cursor-pointer">
-                    <img
-                      src={item.thumbnail}
-                      alt={item.name}
-                      draggable={false}
-                      className="w-full aspect-square rounded-xl object-cover shadow-lg hover:scale-105 hover:shadow-2xl transition-transform duration-300 ease-in-out"
-                    />
-                    <div className="mt-2">
-                      <h3 className="text-white font-semibold truncate">{item.name}</h3>
-                      <p className="text-gray-400 text-sm truncate">{item.artist}</p>
+            data.map((item) => {
+              return (
+                <div key={item.id}>
+                  <div
+                    style={{ width: slideWidth || "100%" }}
+                    className="px-1 flex-none"
+                    onClick={() => handleClick(item.id)}
+                  >
+                    <div className="relative group cursor-pointer">
+                      <img
+                        src={item.thumbnail}
+                        alt={item.name}
+                        draggable={false}
+                        className="w-full aspect-square rounded-xl object-cover shadow-lg hover:scale-105 hover:shadow-2xl transition-transform duration-300 ease-in-out"
+                      />
+                      <div className="mt-2">
+                        <h3 className="text-white font-semibold truncate">{item.name}</h3>
+                        <p className="text-gray-400 text-sm truncate">{item.artist}</p>
+                      </div>
                     </div>
                   </div>
                 </div>
+              )
+            }))
+            : (
+              <div className="p-4">
+                <p className="text-gray-400">No tracks available</p>
               </div>
-            ))
-          ) : (
-            <div className="p-4">
-              <p className="text-gray-400">No tracks available</p>
-            </div>
-          )}
+            )}
         </div>
       </div>
     </div>

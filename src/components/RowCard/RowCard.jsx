@@ -16,7 +16,7 @@ const RowCard = () => {
 
           {/* Text section - takes remaining space */}
           <div className="flex-1 bg-[#0d542b] flex items-center pl-2.5">
-            <p className="text-white truncate text-wrap">Shap of you</p>
+            <p className="text-xs md:text-sm text-white truncate text-wrap">Shap of you</p>
           </div>
         </div>
         <div className="h-16 bg-[#536A6A] rounded-[0.4rem] overflow-hidden flex">
