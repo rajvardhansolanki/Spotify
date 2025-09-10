@@ -12,7 +12,7 @@ const Home = () => {
 
   return (
     <>
-      <div className="w-full p-3 md:p-6 rounded-xl shadow-md  border-1 border-[#0d542b] transition-colors duration-800 ease-in-out" style={{ backgroundColor: backgroundColor }}>
+      <div className="w-full flex flex-wrap p-3 md:p-6 rounded-xl shadow-md  border-1 border-[#0d542b] transition-colors duration-800 ease-in-out" style={{ backgroundColor: backgroundColor }}>
         <RowCard />
       </div>
       <div className="border-1 border-[#0d542b] w-full mt-1 p-3 md:p-4  rounded-xl shadow-md flex flex-wrap overflow-hidden transition-colors duration-800 ease-in-out" style={{ backgroundColor: backgroundColor }}>
