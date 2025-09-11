@@ -1,0 +1,92 @@
+[
+  {
+    "id": "1",
+    "name": "Kalimba Sample",
+    "artist": "Public Sample",
+    "album": "Demo Album",
+    "duration": 60,
+    "url": "https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3",
+    "thumbnail": "https://picsum.photos/id/237/300/300"
+  },
+  {
+    "id": "2",
+    "name": "MP3 700KB Sample",
+    "artist": "File-Examples",
+    "album": "Test Album",
+    "duration": 30,
+    "url": "https://file-examples.com/wp-content/uploads/2017/11/file_example_MP3_700KB.mp3",
+    "thumbnail": "https://picsum.photos/id/238/300/300"
+  },
+  {
+    "id": "3",
+    "name": "MP3 1MB Sample",
+    "artist": "File-Examples",
+    "album": "Test Album",
+    "duration": 60,
+    "url": "https://file-examples.com/wp-content/uploads/2017/11/file_example_MP3_1MG.mp3",
+    "thumbnail": "https://picsum.photos/id/239/300/300"
+  },
+  {
+    "id": "4",
+    "name": "MP3 2MB Sample",
+    "artist": "File-Examples",
+    "album": "Test Album",
+    "duration": 120,
+    "url": "https://file-examples.com/wp-content/uploads/2017/11/file_example_MP3_2MG.mp3",
+    "thumbnail": "https://picsum.photos/id/240/300/300"
+  },
+  {
+    "id": "5",
+    "name": "MP3 5MB Sample",
+    "artist": "File-Examples",
+    "album": "Test Album",
+    "duration": 300,
+    "url": "https://file-examples.com/wp-content/uploads/2017/11/file_example_MP3_5MG.mp3",
+    "thumbnail": "https://picsum.photos/id/241/300/300"
+  },
+  {
+    "id": "6",
+    "name": "Synth Melody 3s",
+    "artist": "SampleLib",
+    "album": "Demo Clips",
+    "duration": 3,
+    "url": "https://samplelib.com/lib/preview/mp3/sample-3s.mp3",
+    "thumbnail": "https://picsum.photos/id/242/300/300"
+  },
+  {
+    "id": "7",
+    "name": "Synth Melody 6s",
+    "artist": "SampleLib",
+    "album": "Demo Clips",
+    "duration": 6,
+    "url": "https://samplelib.com/lib/preview/mp3/sample-6s.mp3",
+    "thumbnail": "https://picsum.photos/id/243/300/300"
+  },
+  {
+    "id": "8",
+    "name": "Synth Melody 9s",
+    "artist": "SampleLib",
+    "album": "Demo Clips",
+    "duration": 9,
+    "url": "https://samplelib.com/lib/preview/mp3/sample-9s.mp3",
+    "thumbnail": "https://picsum.photos/id/244/300/300"
+  },
+  {
+    "id": "9",
+    "name": "Flute & Drums 12s",
+    "artist": "SampleLib",
+    "album": "Demo Clips",
+    "duration": 12,
+    "url": "https://samplelib.com/lib/preview/mp3/sample-12s.mp3",
+    "thumbnail": "https://picsum.photos/id/245/300/300"
+  },
+  {
+    "id": "10",
+    "name": "Melody 19s",
+    "artist": "SampleLib",
+    "album": "Demo Clips",
+    "duration": 19,
+    "url": "https://samplelib.com/lib/preview/mp3/sample-19s.mp3",
+    "thumbnail": "https://picsum.photos/id/246/300/300"
+  }
+]

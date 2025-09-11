@@ -1,9 +1,11 @@
+import { useNavigate } from "react-router-dom";
 
 const CollectionCard = () => {
+  const navigate = useNavigate()
   return (
     <>
       <div className="w-full h-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        <div className="w-full max-w-[300px] h-16 bg-[#536A6A] rounded-[0.4rem] overflow-hidden flex">
+        <div className="w-full max-w-[300px] h-16 bg-[#536A6A] rounded-[0.4rem] overflow-hidden flex cursor-pointer" onClick={() => navigate("/about")}>
           <div className="w-16 shrink-0">
             <img
               className="h-full w-full object-cover"
@@ -21,7 +23,7 @@ const CollectionCard = () => {
             </p>
           </div>
         </div>
-        <div className="w-full max-w-[300px] h-16 bg-[#536A6A] rounded-[0.4rem] overflow-hidden flex">
+        <div className="w-full max-w-[300px] h-16 bg-[#536A6A] rounded-[0.4rem] overflow-hidden flex cursor-pointer" onClick={() => navigate("/about")}>
           <div className="w-16 shrink-0">
             <img
               className="h-full w-full object-cover"
@@ -38,7 +40,8 @@ const CollectionCard = () => {
               High Qulity Musics
             </p>
           </div>
-        </div><div className="w-full max-w-[300px] h-16 bg-[#536A6A] rounded-[0.4rem] overflow-hidden flex">
+        </div>
+        <div className="w-full max-w-[300px] h-16 bg-[#536A6A] rounded-[0.4rem] overflow-hidden flex cursor-pointer" onClick={() => navigate("/about")}>
           <div className="w-16 shrink-0">
             <img
               className="h-full w-full object-cover"
@@ -56,7 +59,7 @@ const CollectionCard = () => {
             </p>
           </div>
         </div>
-        <div className="w-full max-w-[300px] h-16 bg-[#536A6A] rounded-[0.4rem] overflow-hidden flex">
+        <div className="w-full max-w-[300px] h-16 bg-[#536A6A] rounded-[0.4rem] overflow-hidden flex cursor-pointer" onClick={() => navigate("/about")}>
           <div className="w-16 shrink-0">
             <img
               className="h-full w-full object-cover"
@@ -74,7 +77,7 @@ const CollectionCard = () => {
             </p>
           </div>
         </div>
-        <div className="w-full max-w-[300px] h-16 bg-[#536A6A] rounded-[0.4rem] overflow-hidden flex">
+        <div className="w-full max-w-[300px] h-16 bg-[#536A6A] rounded-[0.4rem] overflow-hidden flex cursor-pointer" onClick={() => navigate("/about")}>
           <div className="w-16 shrink-0">
             <img
               className="h-full w-full object-cover"
@@ -92,7 +95,7 @@ const CollectionCard = () => {
             </p>
           </div>
         </div>
-        <div className="w-full max-w-[300px] h-16 bg-[#536A6A] rounded-[0.4rem] overflow-hidden flex">
+        <div className="w-full max-w-[300px] h-16 bg-[#536A6A] rounded-[0.4rem] overflow-hidden flex cursor-pointer" onClick={() => navigate("/about")}>
           <div className="w-16 shrink-0">
             <img
               className="h-full w-full object-cover"
@@ -110,7 +113,7 @@ const CollectionCard = () => {
             </p>
           </div>
         </div>
-        <div className="w-full max-w-[300px] h-16 bg-[#536A6A] rounded-[0.4rem] overflow-hidden flex">
+        <div className="w-full max-w-[300px] h-16 bg-[#536A6A] rounded-[0.4rem] overflow-hidden flex cursor-pointer" onClick={() => navigate("/about")}>
           <div className="w-16 shrink-0">
             <img
               className="h-full w-full object-cover"
@@ -128,7 +131,7 @@ const CollectionCard = () => {
             </p>
           </div>
         </div>
-        <div className="w-full max-w-[300px] h-16 bg-[#536A6A] rounded-[0.4rem] overflow-hidden flex">
+        <div className="w-full max-w-[300px] h-16 bg-[#536A6A] rounded-[0.4rem] overflow-hidden flex cursor-pointer" onClick={() => navigate("/about")}>
           <div className="w-16 shrink-0">
             <img
               className="h-full w-full object-cover"
@@ -146,7 +149,7 @@ const CollectionCard = () => {
             </p>
           </div>
         </div>
-      </div>
+      </div >
     </>
   );
 }

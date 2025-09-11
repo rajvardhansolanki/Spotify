@@ -1,0 +1,11 @@
+[
+  {
+    "id": "p1",
+    "name": "My Playlist",
+    "coverImage": "/thumbnails/playlist1.jpg",
+    "tracks": [
+      "1",
+      "2"
+    ]
+  }
+]
