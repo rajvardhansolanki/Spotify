@@ -5,7 +5,7 @@ import { ROUTES } from "../../constants/routes.js";
 import RenderContent from "../../pages/Main/RenderContent.jsx";
 import Navbvar from "../navbar/Navbvar.jsx";
 import Player from "../player/Player.jsx";
-import Sidebar from "../sideBar/Sidebar.jsx";
+import Sidebar from "../Sidebar/Sidebar.jsx";
 
 const Layout = ({ children }) => {
   const dispatch = useDispatch();
